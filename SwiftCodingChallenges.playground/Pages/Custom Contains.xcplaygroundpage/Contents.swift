@@ -12,11 +12,23 @@
 import Foundation
 
 extension String {
-    func fuzzyContains (_ subString: String) -> Bool {
-        for s in self.characters {
 
-        }
-        return true
+    // this is the better method for lots of items
+    func fuzzyContains (_ subString: String) -> Bool {
+        return self.lowercased().range(of: subString.lowercased()) != nil
+    }
+
+    func fizzyContains (_ subString: String) -> Bool {
+        return self.range(of: subString, options: .caseInsensitive) != nil
     }
 }
+
+"Hello, world".fuzzyContains("Hello") // returns true
+"Hello, world".fuzzyContains("WORLD") // return true
+"Hello, world".fuzzyContains("Goodbye") // return false
+
+"Hello, world".fizzyContains("Hello") // returns true
+"Hello, world".fizzyContains("WORLD") // return true
+"Hello, world".fizzyContains("Goodbye") // return false
+
 //: [Previous](@previous) | [Table Of Contents](TOC) | [Next](@next)
